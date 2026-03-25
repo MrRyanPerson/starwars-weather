@@ -1,7 +1,7 @@
 <script>
     import { asset } from "$app/paths";
 
-    let { location = 'Loading', temp = "?", code = 1 } = $props();
+    let { location = 'Loading', temp = "?", code = 500 } = $props();
 
     let description = $state();
     let src = $state();
@@ -14,7 +14,7 @@
             description = codeData[currentCode].day.description + ", Temp: " + currentTemp + " °F";
             src = codeData[currentCode].day.image;
             if (src == "pending") {
-                src = asset('images/pending_icon.png');
+                src = asset('/images/pending_icon.png');
             }
         })();
     });

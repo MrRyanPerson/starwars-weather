@@ -16,6 +16,7 @@
 	 */
     function getDesc(planet) {
         const descriptions = {
+            "Kamino": "Wet.",
             "Hoth": "Cold, Icy, Freezing Desolation.",
             "Naboo": "Temperate, dry, and fairly pleasant",
             "Coruscant": "Jedi meeting present. But outside is beautifully calm.",
@@ -33,8 +34,8 @@
 	 */
     function getPlanet(temp, condition) {
         let planet;
-        if (condition.includes("snow") || condition.includes("hail")) {
-            planet = 'Hoth'
+        if (condition.includes("Drizzle") || condition.includes("Rain")) {
+            planet = 'Kamino'
         }
         else {
             if (temp <= 35) {
