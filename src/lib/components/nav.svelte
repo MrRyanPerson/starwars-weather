@@ -1,7 +1,7 @@
 <script>
     import { asset } from "$app/paths";
 
-    let { location = 'Loading', temp = "Loading", code = 1 } = $props();
+    let { location = 'Loading', temp = "?", code = 1 } = $props();
 
     let description = $state();
     let src = $state();

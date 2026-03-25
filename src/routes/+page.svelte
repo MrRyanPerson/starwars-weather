@@ -2,9 +2,10 @@
     import Nav from '$lib/components/nav.svelte';
     import Footer from '$lib/components/footer.svelte';
     import { onMount } from 'svelte';
+    import { asset } from '$app/paths';
 
-    let temp = $state("70");
-    let WMOcode = $state(0);
+    let temp = $state("?");
+    let WMOcode = $state(500);
     let city = $state("Loading...");
     let planet = $state("Loading");
     let description = $state("Loading");
@@ -74,7 +75,7 @@
     });
 
 </script>
-<main class="relative h-screen bg-slate-950 bg-cover bg-center bg-no-repeat" style={`background-image: url('/images/${planet}.jpg');`}>
+<main class="relative h-screen bg-slate-950 bg-cover bg-center bg-no-repeat" style={`background-image: url(${asset('/images/' + planet + '.jpg')});`}>
     <div class="absolute inset-0 bg-black/10"></div>
     <div class="relative z-10">
         <Nav location="{city}" temp="{temp}" code={WMOcode} />
@@ -86,8 +87,4 @@
     <div class="text-2xl text-white font-semibold capitalize absolute bottom-20 right-40">
         <p id="planet-description">{description}</p>
     </div>
-
 </main>
-<footer>
-    <Footer />
-</footer>
