@@ -16,6 +16,7 @@
 	 */
     function getDesc(planet) {
         const descriptions = {
+            "Endor": "Temperate foggy. Watch for Ewok's",
             "Kamino": "Wet.",
             "Hoth": "Cold, Icy, Freezing Desolation.",
             "Naboo": "Temperate, dry, and fairly pleasant",
@@ -34,8 +35,11 @@
 	 */
     function getPlanet(temp, condition) {
         let planet;
-        if (condition.includes("Drizzle") || condition.includes("Rain")) {
-            planet = 'Kamino'
+        if (condition.includes("Drizzle") || condition.includes("Rain") || condition.includes("Showers")) {
+            planet = 'Kamino';
+        }
+        else if (condition.includes("Fog")){
+            planet = 'Endor';
         }
         else {
             if (temp <= 35) {
