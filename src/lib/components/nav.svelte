@@ -13,6 +13,9 @@
             const codeData = await (await fetch(asset('/data/codes.json'))).json();
             description = codeData[currentCode].day.description + ", Temp: " + currentTemp + " °F";
             src = codeData[currentCode].day.image;
+            if (src == "pending") {
+                src = asset('images/pending_icon.png');
+            }
         })();
     });
 </script>
