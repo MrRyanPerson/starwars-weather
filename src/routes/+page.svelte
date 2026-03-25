@@ -79,12 +79,15 @@
     <div class="absolute inset-0 bg-black/10"></div>
     <div class="relative z-10">
         <Nav location="{city}" temp="{temp}" code={WMOcode} />
-        <div class="flex flex-col min-h-screen items-center justify-start my-40">
+        <div class="flex flex-col items-center justify-start my-40">
             <h2 class=" text-white font-sans font-normal uppercase text-xl sm:text-2xl md:text-3xl ">Feels Like</h2>
-            <h1 id="planet" class="text-white font-sans font-normal tracking-[0.3em] uppercase text-5xl text-shadow-sm text-shadow-black sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl">{planet}</h1>
+            <h1 id="planet" class="text-white font-sans font-normal tracking-[0.3em] uppercase text-5xl text-shadow-lg text-shadow-black sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl">{planet}</h1>
         </div>
     </div>
-    <div class="text-2xl text-white font-semibold capitalize absolute bottom-20 right-40">
+    <div class="text-2xl text-white font-normal absolute bottom-20 right-40">
         <p id="planet-description">{description}</p>
     </div>
 </main>
+<footer>
+    <Footer />
+</footer>
