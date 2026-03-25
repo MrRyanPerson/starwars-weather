@@ -1,0 +1,93 @@
+<script>
+    import Nav from '$lib/components/nav.svelte';
+    import Footer from '$lib/components/footer.svelte';
+    import { onMount } from 'svelte';
+
+    let temp = $state("70");
+    let WMOcode = $state(0);
+    let city = $state("Loading...");
+    let planet = $state("Loading");
+    let description = $state("Loading");
+
+
+    /**
+	 * @param {string} planet
+	 */
+    function getDesc(planet) {
+        const descriptions = {
+            "Hoth": "Cold, Icy, Freezing Desolation.",
+            "Naboo": "Temperate, dry, and fairly pleasant",
+            "Coruscant": "Jedi meeting present. But outside is beautifully calm.",
+            "Scariff": "Cloudy, clear, and beautiful outside.",
+            "Tatooine": "Hot, Dry, Occasional Sarlacc.",
+            "Bespin": "Visit Mos Eisley for a drink, its HOT.",
+            "Kashyyk": "Watch for Ewok's"
+        };
+        return descriptions[planet]
+    }
+
+    /**
+	 * @param {number} temp
+	 */
+    function getPlanet(temp) {
+        let planet;
+        if (temp <= 35) {
+            planet = 'Hoth'
+        } else if (temp <= 55) {
+            planet = 'Naboo'
+        } else if (temp <= 65) {
+            planet = 'Coruscant'
+        } else if (temp <= 72) {
+            planet = 'Scariff'
+        } else if (temp <= 78) {
+            planet = 'Tatooine'
+        } else if (temp <= 90) {
+            planet = 'Bespin'
+        } else {
+            planet = 'Kashyyk'
+        }
+        return planet
+
+    }
+
+    async function getLocation() {
+        const locationData = await (await fetch("https://ipv4-check-perf.radar.cloudflare.com/api/info")).json();
+        return {lat: locationData.latitude, lon: locationData.longitude, city: locationData.city}
+    }
+
+    /**
+	 * @param {number} lat
+	 * @param {number} lon
+	 */
+    async function getWeather(lat, lon) {
+        const weatherData = await (await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`)).json();
+        return weatherData
+    }
+    onMount(async () => {
+        const location = await getLocation();
+        const weather = await getWeather(location.lat, location.lon);
+        temp = weather.current.temperature_2m;
+        WMOcode = weather.current.weather_code;
+        city = location.city;
+        planet = getPlanet(Number(temp));
+        description = getDesc(planet);
+    });
+
+</script>
+<main class="relative h-screen bg-slate-950 bg-cover bg-center bg-no-repeat" style={`background-image: url('/images/${planet}.jpg');`}>
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="relative z-10">
+        <Nav location="{city}" temp="{temp}" code={WMOcode} />
+        <div class="flex flex-col min-h-screen items-center justify-start my-40">
+            <h2 class=" text-white font-sans font-normal uppercase text-xl sm:text-2xl md:text-3xl ">Feels Like</h2>
+            <h1 id="planet" class="text-white font-sans font-normal tracking-[0.3em] uppercase text-5xl text-shadow-sm text-shadow-black sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl">{planet}</h1>
+        </div>
+    </div>
+    <div class="text-2xl text-white font-semibold capitalize absolute bottom-20 right-40">
+        <p id="planet-description">{description}</p>
+    </div>
+
+</main>
+<footer>
+    <Footer />
+</footer>
