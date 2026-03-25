@@ -23,7 +23,7 @@
             "Scariff": "Cloudy, clear, and beautiful outside.",
             "Tatooine": "Hot, Dry, Occasional Sarlacc.",
             "Bespin": "Visit Mos Eisley for a drink, its HOT.",
-            "Kashyyk": "Watch for Ewok's"
+            "Kashyyk": "Watch for Wookies."
         };
         return descriptions[planet]
     }
