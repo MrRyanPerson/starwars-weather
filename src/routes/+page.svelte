@@ -8,7 +8,7 @@
     let WMOcode = $state(500);
     let city = $state("Loading...");
     let planet = $state("Loading");
-    let description = $state("Loading");
+    let description = $state("Loading...");
 
 
     /**
