@@ -104,7 +104,7 @@
             <h1 id="planet" class="text-white font-sans font-normal tracking-[0.3em] uppercase text-5xl text-shadow-lg text-shadow-black sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl">{planet}</h1>
         </div>
     </div>
-    <div class="text-2xl text-white font-normal absolute bottom-20 right-20">
+    <div class="text-2xl text-white font-normal absolute bottom-1/8 right-1/8">
         <p id="planet-description">{description}</p>
     </div>
 </main>
