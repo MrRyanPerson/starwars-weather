@@ -41,6 +41,9 @@
         else if (condition.includes("Fog")){
             planet = 'Endor';
         }
+        else if (condition.includes("Cloudy") && temp <= 72) {
+            planet = "Coruscant";
+        }
         else {
             if (temp <= 35) {
                 planet = 'Hoth'
@@ -105,7 +108,7 @@
         </div>
     </div>
     <div class="text-2xl text-white font-normal absolute bottom-1/8 right-1/8">
-        <p id="planet-description">{description}</p>
+        <h2 id="planet-description" class="text-shadow-lg">{description}</h2>
     </div>
 </main>
 <footer>
