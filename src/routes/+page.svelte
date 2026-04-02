@@ -41,7 +41,7 @@
         else if (condition.includes("Fog")){
             planet = 'Endor';
         }
-        else if (condition.includes("Cloudy") && temp <= 72) {
+        else if (condition.includes("Cloudy") && temp <= 72 && temp >=55) {
             planet = "Coruscant";
         }
         else {
